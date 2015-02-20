@@ -4,9 +4,32 @@ def GetUserHomeFolder():
     """ Return the User's Home Directory """
     return os.path.expanduser("~")
     
-def GetGlobalDirectory(directory):
-    """ Return the Global Directory """
-    return os.path.join(GetUserHomeFolder(), directory)
+def CreateDirectoryIfItDoesNotExist(directory):
+    """ Creates the given directory if it does not exist """
+    if not os.path.isdir(directory):
+        os.mkdir(directory)
+            
+def CreateFileIfItDoesNotExist(filename):
+    """ Creates the given file if it does not exist """
+    if not os.path.exists(filename):
+        with open(filename, 'w'):
+            pass
+
+class GlobalConfigDir:
+    """ Represents a global config directory """
+    
+    def __init__(self, directory, create=False):
+        """ Initialize with the directory to find """
+        self.directory = os.path.join(GetUserHomeFolder(), directory)
+        if create:
+            CreateDirectoryIfItDoesNotExist(self.directory)
+        
+    def getFile(self, filename, create=False):
+        """ Create the global directory if it does not exist """
+        filename = os.path.join(self.directory, filename)
+        if create:
+            CreateFileIfItDoesNotExist(filename)
+        return filename
     
 class LocalConfigFinder:
     """ Class to help find a local config file """
