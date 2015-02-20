@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(name='kao_config',
-      version='0.1.0',
+      version='0.1.1',
       description="",
       author='',
       author_email='',

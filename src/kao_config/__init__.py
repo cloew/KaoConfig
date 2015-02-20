@@ -39,10 +39,10 @@ class LocalConfigFinder:
         self.filename = filename
         self.fullPath = None
         
-    def find(self, startFrom=None):
+    def find(self, startFrom=None, reload=False):
         """ Return the path to the closest file by searching the startFrom 
             directory or the current directory up to the file root """
-        if self.fullPath is not None:
+        if self.fullPath is not None and not reload:
             return self.fullPath
             
         if startFrom is None:
