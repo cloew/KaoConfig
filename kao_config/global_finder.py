@@ -5,7 +5,7 @@ def GetUserHomeFolder():
     return os.path.expanduser("~")
     
 class GlobalFinder:
-    """ Represents a method of fidning a requested Global File """
+    """ Represents a method of finding a requested Global File """
     
     def __init__(self, filename):
         """ Initialize with the filename to load """

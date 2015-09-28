@@ -1,3 +1,6 @@
+from .config_file import ConfigFile
+from .specified_path_finder import SpecifiedPathFinder
+
 from kao_decorators import proxy_for
 import os
     
@@ -16,9 +19,10 @@ class ConfigDir:
         if create:
             CreateDirectoryIfItDoesNotExist(self.path)
         
-    def getFilename(self, filename, create=False):
+    def getFilename(self, filename):
         """ Return the path to the requested filename """
-        filename = os.path.join(self.path, filename)
-        if create:
-            CreateFileIfItDoesNotExist(filename)
-        return filename
+        return os.path.join(self.path, filename)
+    
+    def getFile(self, filename, create=False):
+        """ Return the Config File Wrapper for the file specified """
+        return ConfigFile(SpecifiedPathFinder(self.getFilename(filename)), craete=create)
