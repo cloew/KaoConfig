@@ -1,5 +1,10 @@
 from kao_decorators import proxy_for
 import os
+    
+def CreateDirectoryIfItDoesNotExist(directory):
+    """ Creates the given directory if it does not exist """
+    if not os.path.isdir(directory):
+        os.mkdir(directory)
 
 @proxy_for('finder', ['path'])
 class ConfigDir:
