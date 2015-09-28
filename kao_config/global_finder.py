@@ -4,4 +4,4 @@ class GlobalFinder:
     
     def __init__(self, filename):
         """ Initialize with the filename to load """
-        self.filename = os.path.join(GetUserHomeFolder(), filename)
+        self.path = os.path.join(GetUserHomeFolder(), filename)
