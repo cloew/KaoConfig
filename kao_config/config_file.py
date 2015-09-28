@@ -1,4 +1,5 @@
 from kao_decorators import proxy_for
+from contextlib import contextmanager
 import os
 
 def CreateFileIfItDoesNotExist(filename):
@@ -16,3 +17,21 @@ class ConfigFile:
         self.finder = finder
         if create:
             CreateFileIfItDoesNotExist(self.path)
+            
+    @contextmanager
+    def open(self, mode):
+        """ Open the file in the given mode """
+        with open(self.path, mode) as file:
+            yield file
+            
+    def readlines(self):
+        """ Return the lines from the file """
+        lines = []
+        with self.open('r') as file:
+            lines = file.readlines()
+        return lines
+            
+    def write(self, text):
+        """ Write the text to the file """
+        with self.open('w') as file:
+            file.write(text)
