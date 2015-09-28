@@ -1,4 +1,9 @@
+import os
 
+def GetUserHomeFolder():
+    """ Return the User's Home Directory """
+    return os.path.expanduser("~")
+    
 class GlobalFinder:
     """ Represents a method of fidning a requested Global File """
     
