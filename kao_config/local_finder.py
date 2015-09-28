@@ -1,3 +1,4 @@
+import os
 
 class LocalFinder:
     """ Represents a method of finding a file in the nearest parent directory """
@@ -27,7 +28,7 @@ class LocalFinder:
     def search(self, currentDirectory):
         """ Search for the file """
         while currentDirectory != '/':
-            fullFilename = os.path.join(currentDirectory, self.filename)
+            fullFilename = os.path.join(currentDirectory, self.filenameToSearchFor)
             if os.path.exists(fullFilename):
                 return fullFilename
             currentDirectory = os.path.dirname(currentDirectory)
