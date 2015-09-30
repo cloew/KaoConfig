@@ -25,4 +25,4 @@ class ConfigDir:
     
     def getFile(self, filename, create=False):
         """ Return the Config File Wrapper for the file specified """
-        return ConfigFile(SpecifiedPathFinder(self.getFilename(filename)), craete=create)
+        return ConfigFile(SpecifiedPathFinder(self.getFilename(filename)), create=create)
