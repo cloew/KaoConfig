@@ -31,6 +31,13 @@ class ConfigFile:
             lines = file.readlines()
         return lines
             
+    def read(self):
+        """ Return the data from the file """
+        data = ''
+        with self.open('r') as file:
+            data = file.read()
+        return data
+            
     def write(self, text):
         """ Write the text to the file """
         with self.open('w') as file:
