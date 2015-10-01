@@ -1,13 +1,8 @@
 from kao_decorators import proxy_for
+from kao_path import TouchFile
 from contextlib import contextmanager
 import os
 
-def CreateFileIfItDoesNotExist(filename):
-    """ Creates the given file if it does not exist """
-    if not os.path.exists(filename):
-        with open(filename, 'w'):
-            pass
-            
 @proxy_for('finder', ['path'])
 class ConfigFile:
     """ Represents a configuration file """
@@ -16,7 +11,7 @@ class ConfigFile:
         """ Initialize with the finder """
         self.finder = finder
         if create:
-            CreateFileIfItDoesNotExist(self.path)
+            TouchFile(self.path)
             
     @contextmanager
     def open(self, mode):

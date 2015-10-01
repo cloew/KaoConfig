@@ -2,12 +2,8 @@ from .config_file import ConfigFile
 from .specified_path_finder import SpecifiedPathFinder
 
 from kao_decorators import proxy_for
+from kao_path import TouchDirectory
 import os
-    
-def CreateDirectoryIfItDoesNotExist(directory):
-    """ Creates the given directory if it does not exist """
-    if not os.path.isdir(directory):
-        os.mkdir(directory)
 
 @proxy_for('finder', ['path'])
 class ConfigDir:
@@ -17,7 +13,7 @@ class ConfigDir:
         """ Initialize with the finder to use """
         self.finder = finder
         if create:
-            CreateDirectoryIfItDoesNotExist(self.path)
+            TouchDirectory(self.path)
         
     def getFilename(self, filename):
         """ Return the path to the requested filename """
